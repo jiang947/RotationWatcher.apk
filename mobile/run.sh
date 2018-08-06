@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
 # Fail on error, verbose output
+
+../gradlew assembleDebug
+
+
 set -exo pipefail
 
 # Install the APK
-adb install -rd ./build/outputs/apk/*-debug.apk
+adb install -r ./build/outputs/apk/debug/*-debug.apk
 
 # Figure out where it was installed
 path=$(adb shell pm path jp.co.cyberagent.stf.rotationwatcher | tr -d '\r' | cut -d: -f 2)
